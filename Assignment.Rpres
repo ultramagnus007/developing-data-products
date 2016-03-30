@@ -1,0 +1,50 @@
+Developing Data Products Assignment
+========================================================
+author: Amit Sharma
+date: 
+
+First Slide
+========================================================
+
+In this project Kmeans Clustering Algorithm is demonstated
+- Application clustering algorithm on 2 dimensional data
+- Generate the artificial data corresponding K1 clusters and N data points  
+- example few entries of generated data is
+```{r echo=FALSE}
+     set.seed(1023)
+     ndata<-100
+     x = matrix(rnorm(ndata * 2), ndata, 2)
+     ncluster<-5
+     clusterid = sample(1:ncluster, ndata, replace = TRUE)
+     xmean = matrix(rnorm(2*ncluster, sd = 4), ncluster, 2)
+     data = x + xmean[clusterid, ]
+     data <- cbind(data, clusterid)
+     head(data)
+```
+
+Slide With Code
+========================================================
+for k = 5 and n = 100, generated data looks like
+
+```{r echo=FALSE}
+     plot(data, col = clusterid, pch = 19) 
+     text(xmean, labels=1:nrow(xmean), cex= 2)      
+```
+
+Slide With Code
+========================================================
+- Apply the K mean Clustering algorithm to N datapoints calculated earlier
+- user can specify value of K2 on which algorithm operate
+- Display the data points corresponds to calculated K2 clusters
+```{r}
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+     nkmean<-3            
+     km.out = kmeans(data, nkmean, nstart = 15)
+     plot(data, col = km.out$cluster, pch = 19)
+     text(km.out$centers, labels=1:nrow(km.out$centers), cex= 2)            
+```
