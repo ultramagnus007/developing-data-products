@@ -5,46 +5,63 @@ date:
 
 First Slide
 ========================================================
+In this project Kmeans Clustering Algorithm is demonstated  
+(I)Generation of Artificial data    
+<small>
+  number of clusters = K1, number of data points = n
+  user specify these two parameters for data generation  
+  </small>
+(II)Applying K-Means clustering algorithm on  Data  
+<small>
+  user specify number of clusters = K2 for clustering algorithm  
+</small>
 
-In this project Kmeans Clustering Algorithm is demonstated
-- Application clustering algorithm on 2 dimensional data
-- Generate the artificial data corresponding K1 clusters and N data points  
+Data Generation
+========================================================
+
+- Generate the artificial data corresponding K1 clusters and N data points 
+- generating K1 Cluster and generating data aroundclusters points. 
 - example few entries of generated data is
 ```{r echo=FALSE}
      set.seed(1023)
      ndata<-100
      x = matrix(rnorm(ndata * 2), ndata, 2)
-     ncluster<-5
-     clusterid = sample(1:ncluster, ndata, replace = TRUE)
-     xmean = matrix(rnorm(2*ncluster, sd = 4), ncluster, 2)
+     K1<-5
+     clusterid = sample(1:K1, ndata, replace = TRUE)
+     xmean = matrix(rnorm(2*K1, sd = 4), K1, 2)
      data = x + xmean[clusterid, ]
      data <- cbind(data, clusterid)
      head(data)
 ```
 
-Slide With Code
-========================================================
-for k = 5 and n = 100, generated data looks like
 
+Data Graph
+========================================================
+K1 and n values is taken Input from user  
+For K1 = 5 and n = 100, generated data looks like 
 ```{r echo=FALSE}
      plot(data, col = clusterid, pch = 19) 
      text(xmean, labels=1:nrow(xmean), cex= 2)      
 ```
 
-Slide With Code
+K mean Clusteing algorithm
 ========================================================
 - Apply the K mean Clustering algorithm to N datapoints calculated earlier
 - user can specify value of K2 on which algorithm operate
-- Display the data points corresponds to calculated K2 clusters
-```{r}
-```
+- Initialize   
+Pick K2 random points as cluster centers   
+Repeat   
+  1.Assign data points to closest cluster center   
+  2.Change the cluster  center to the average  of its assigned points 
+  Stop when no points assignments change 
 
-Slide With Plot
+
+Data with calculated Clusters
 ========================================================
-
+- Data points corresponds to calculated K2=3 clusters
 ```{r, echo=FALSE}
-     nkmean<-3            
-     km.out = kmeans(data, nkmean, nstart = 15)
+     K2<-3            
+     km.out = kmeans(data, K2, nstart = 15)
      plot(data, col = km.out$cluster, pch = 19)
      text(km.out$centers, labels=1:nrow(km.out$centers), cex= 2)            
 ```
