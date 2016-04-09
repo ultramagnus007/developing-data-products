@@ -10,7 +10,7 @@ shinyUI(fluidPage(
         sliderInput("ncluster", "Number of Clusters for data generation",min = 3, max = 20, value = 4)
       ),
       fluidRow(
-        sliderInput("nkmean", "numner of Clusters for Kmean Custering",min = 3, max = 20, value = 4)
+        sliderInput("nkmean", "Number of Clusters for Kmean Custering Algo",min = 3, max = 20, value = 4)
       )  
       ),
     mainPanel(      

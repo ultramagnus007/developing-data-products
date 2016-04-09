@@ -1,25 +1,24 @@
 K-Mean Clustering Demonstration
-
-
-1. it has two part
+This project has two part
    
  (I) Artificial Data Generation for this user has to specify 2 parameters
- 1. number of clusters = K1
-    for this K1 two Dimensional points are generated from normal distribution having standard deviation 4,for both x and y values
-     Xmean = matrix(rnorm(2*K1, sd = 4), ncluster, 2)
-    now we have K1 cluster points for data generation
- 2. number of data points = n
+      1. Number of clusters = K1
+    	for this K1 two Dimensional points are generated from normal distribution having standard deviation 4,for both x and y values
+        Xmean = matrix(rnorm(2*K1, sd = 4), K1, 2)
+        Now we have K1 cluster points for data generation
+      2. Number of data points = n
  	we generate n two dimensional values from normal distribution having standard deviation 1
- 	deviation = matrix(rnorm(ndata * 2), ndata, 2)
- 	The values corresponds to deviation arround the K1 cluster calculated above
+ 	deviation = matrix(rnorm(n * 2), n, 2)
  	
+ 	The values corresponds to deviation arround the K1 cluster calculated above 	
  	and we randomly assign them to above generated K1 cluster points like
- 	id<-clussample(1:K1, ndata, replace = TRUE)
+ 	
+ 	id<-clussample(1:K1, n, replace = TRUE)
  
-   now the sample data is generated around K1 cluster using above n points
+   Now the sample data is generated around K1 cluster using above n points
    	data = deviation + Xmean[id, ]
  
-  These Cluster-Ids centers are showing on 2-D graph in form of number
+  These Cluster-Ids centers are showing on 2-D graph in form of number.
   Different Color-points belong to different cluster
   
  

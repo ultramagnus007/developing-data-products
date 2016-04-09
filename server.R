@@ -4,15 +4,15 @@ shinyServer(
      #Generate the deviation corresponding to each data point in two dimension,
      #arround the mean, from the normal distribution 
      deviation<- reactive({
-       ndata<-input$ndata
-       x = matrix(rnorm(ndata * 2), ndata, 2)
+       n<-input$ndata
+       x = matrix(rnorm(n * 2), n, 2)
        x
      })
      #Generate Cluster id which corrospond to each data point
      clusterid<-reactive({
-       ndata<-input$ndata
+       n<-input$ndata
        K1<-input$ncluster
-       clusterid = sample(1:K1, ndata, replace = TRUE)
+       clusterid = sample(1:K1, n, replace = TRUE)
        clusterid
      })
      
@@ -34,7 +34,8 @@ shinyServer(
       d<-data()
       id<-clusterid()
       Xmean<-xmean()
-      plot(d, col = id, pch = 19)
+      plot(d, col = id, pch = 19, main = "Plot I: Input Data points and clusters",
+           xlab= "X axis", ylab = "Y axis")
       text(Xmean, labels=1:nrow(Xmean), cex= 2)      
     })
     #plot the data After Applying the K means Clustersing,
@@ -42,7 +43,8 @@ shinyServer(
     output$KmeanPlot <- renderPlot({
       K2<-input$nkmean            
       km.out = kmeans(data(), K2, nstart = 15)
-      plot(data(), col = km.out$cluster, pch = 19)
+      plot(data(), col = km.out$cluster, pch = 19, main = "Plot II: Output Clusters",
+           xlab= "X axis", ylab = "Y axis")
       text(km.out$centers, labels=1:nrow(km.out$centers), cex= 2)            
     })
   }
